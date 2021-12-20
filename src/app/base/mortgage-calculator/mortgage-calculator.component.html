@@ -1,0 +1,154 @@
+<div class="heading-container">
+    <img
+        width="40"
+        alt="Angular Logo"
+        src="../assets/icons/MC-CH.svg"
+    />
+    <span>Mortgage Calculator</span>
+</div>
+<mat-divider></mat-divider>
+<div class="payment-container">
+    <form [formGroup]="calculatorForm" class="form-container">
+        <mat-card class="mortgage-card">
+            <mat-card-header>
+            <mat-card-title>Payment Plan</mat-card-title>
+            </mat-card-header>
+            
+            <mat-card-content>
+                <div formGroupName="paymentPlan" class="mortgage-card-content">
+                    <div class="row-container">
+                        <mat-icon color="primary" class="mc-tooltip" matTooltip="The amount you expect to borrow from your financial institution. It is calculated as the purchase price of your home, minus the down payment plus any applicable mortgage loan insurance premium you have to pay.">help</mat-icon>
+                        <mat-form-field >
+                            <mat-label>Mortgage Amount</mat-label>
+                            <span matPrefix >$&nbsp;</span>
+                            <input formControlName="mAmount" matInput autocomplete="off">
+                        </mat-form-field>
+                        
+                    </div>
+                    
+                    <div class="row-container">
+                        <mat-icon color="primary" class="mc-tooltip" matTooltip="Annual interest rate for this mortgage.">help</mat-icon>
+                        <mat-form-field >
+                            <mat-label>Interest Rate</mat-label>
+                            <span matSuffix>% &nbsp;</span>
+                            <input formControlName="mInterestRate" matInput autocomplete="off">
+                        </mat-form-field>
+                        
+                    </div>
+                    
+                    <div class="mortperiod-container">
+                        <mat-icon color="primary" class="mc-tooltip" matTooltip="The number of years and months over which you will repay this loan. The most common amortization period is 25 years. Not to be confused with the term of your loan, which is the duration of the loan agreement you signed with your financial institution and that has to be renewed regularly. Terms are generally for 1 to 10 years.">help</mat-icon>
+                        <mat-form-field class="mortperiod-years">
+                            <mat-label>Amortization Period(in Years)</mat-label>
+                            <mat-select formControlName="mortperiodSel" name="mortperiodSel">
+                                <mat-option *ngFor="let mortperiod of mortperiods" [value]="mortperiod.value">
+                                  {{mortperiod.text}}
+                                </mat-option>
+                            </mat-select>
+                            <!-- <input formControlName="mPeriod" matInput placeholder="555-555-1234"> -->
+                        </mat-form-field>
+                        <mat-form-field  class="mortperiod-months">
+                            <mat-label>Amortization Period(in Months)</mat-label>
+                            <mat-select formControlName="mortperiodMonths" name="mortperiodMonths">
+                                <mat-option *ngFor="let mortperiodMnth of mortperiodMnths" [value]="mortperiodMnth.value">
+                                  {{mortperiodMnth.text}}
+                                </mat-option>
+                            </mat-select>
+                            <!-- <input formControlName="mPeriod" matInput placeholder="555-555-1234"> -->
+                        </mat-form-field>
+                    </div>
+
+                    <div class="row-container">
+                        <mat-icon color="primary" class="mc-tooltip" matTooltip="By choosing an accelerated payment frequency, you can reduce your amortization period and save thousands of dollars in interest in the long run. For example, the accelerated bi-weekly payment allows you to pay half of your monthly payment every two weeks. You will therefore make 26 payments a year, the equivalent of one extra monthly payment a year.">help</mat-icon>
+                        <mat-form-field >
+                            <mat-label>Payment Frequency</mat-label>
+                            <mat-select formControlName="mFrequency" name="mFrequency">
+                                <mat-option *ngFor="let mortgagePayment of mortgagePaymentFrequency" [value]="mortgagePayment.value">
+                                    {{mortgagePayment.text}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    
+                    <div class="row-container">
+                        <mat-icon color="primary" class="mc-tooltip" matTooltip="The number of term years.">help</mat-icon>
+                        <mat-form-field >
+                            <mat-label>Term</mat-label>
+                            <mat-select formControlName="mTerm" name="mTerm">
+                                <mat-option *ngFor="let mortgageTerm of mortgageTerm" [value]="mortgageTerm.value">
+                                    {{mortgageTerm.text}}
+                                </mat-option>
+                            </mat-select>
+
+                        </mat-form-field>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+        <mat-card class="mortgage-card">
+            <mat-card-header>
+                <mat-card-title>Prepayment Plan</mat-card-title>
+            </mat-card-header>
+            
+            <mat-card-content>
+                <div formGroupName="prePaymentPlan" class="mortgage-card-content">
+                    <div class="row-container">
+                        <mat-icon color="primary" class="mc-tooltip" matTooltip="Amount that you will prepay on your mortgage. This amount will be applied to the mortgage principal balance, at a frequency of prepayments that you determine.">help</mat-icon>
+                        <mat-form-field >
+                            <mat-label>Prepayment Amount</mat-label>
+                            <span matPrefix >$&nbsp;</span>
+                            <input formControlName="preAmount" matInput autocomplete="off">
+                        </mat-form-field>
+                    </div>
+                    <div class="row-container">
+                        <mat-icon color="primary" class="mc-tooltip" matTooltip="The frequency under which you will make prepayments on your mortgage. The options are one time payment, yearly and the same as regular payment.">help</mat-icon>
+                        <mat-form-field >
+                            <mat-label>Prepayment Frequency</mat-label>
+                            <mat-select formControlName="preFrequency" name="preFrequency">
+                                <mat-option *ngFor="let prepaymentFrequency of prepaymentFrequencies" [value]="prepaymentFrequency.value">
+                                    {{prepaymentFrequency.text}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="row-container">
+                        <mat-icon color="primary" class="mc-tooltip" matTooltip="This is the payment number that your prepayments will begin with. For a one time payment, this is the payment number that the single prepayment will be included in. All prepayments of principal are assumed to be received by your lender in time to be included in the following month's interest calculation.">help</mat-icon>
+                        <mat-form-field >
+                            <mat-label>Start With Payment</mat-label>
+                            <input formControlName="startPayment" matInput autocomplete="off">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </form>
+</div>
+
+<button type="button" class="btn btn-primary calculate-button">Primary</button>
+
+<div class="mortgage-summary">
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <caption> Calculation Summary </caption>
+        <!-- Category Column -->
+        <ng-container matColumnDef="category">
+          <th mat-header-cell *matHeaderCellDef> Category </th>
+          <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+        </ng-container>
+      
+        <!-- Term Column -->
+        <ng-container matColumnDef="term">
+          <th mat-header-cell *matHeaderCellDef> Term </th>
+          <td mat-cell *matCellDef="let element"> {{element.term}} </td>
+        </ng-container>
+      
+        <!-- Amortization Period Column -->
+        <ng-container matColumnDef="amortizationPeriod">
+          <th mat-header-cell *matHeaderCellDef> Amortization Period </th>
+          <td mat-cell *matCellDef="let element"> {{element.amortizationPeriod}} </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
