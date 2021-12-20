@@ -195,10 +195,10 @@ export const prepaymentFrequencies = [{
 }];
 
 export const calculationSummary: any[] = [
-    {category: "Number of Payments", term: "0", amortizationPeriod: "300"},
-    {category: "Mortgage Payment", term: '$71.54', amortizationPeriod: "$71.54"},
-    {category: "Prepayment", term: '$0.00', amortizationPeriod: "$0.00"},
-    {category: "Principal Payments", term: '$1,413.58', amortizationPeriod: "$12,300.00"},
-    {category: "Interest Payments", term: '$2,878.66', amortizationPeriod: "$9,161.22"},
-    {category: "Total Cost", term: '$4,292.24', amortizationPeriod: "$21,461.22"}
+    {category: "Number of Payments", helpMessage: "The number of payments made during the Term and Amoritization period respectively.", term: "0", amortizationPeriod: "300"},
+    {category: "Mortgage Payment", helpMessage: "The amount you will pay per period during the Term and Amoritization respectively, which include a portion for the principal payment and a portion for the interest payment.", term: '$71.54', amortizationPeriod: "$71.54"},
+    {category: "Prepayment", helpMessage: "The amount of prepayment made during the Term and Amoritization period respectively.", term: '$0.00', amortizationPeriod: "$0.00"},
+    {category: "Principal Payments", helpMessage: "The total amount of principal payment made during the Term and Amoritization period respectively.", term: '$1,413.58', amortizationPeriod: "$12,300.00"},
+    {category: "Interest Payments", helpMessage: "Total of all interest paid during the Term and Amoritization period respectively, assuming that the conditions of your loan (e.g. interest rate, amortization period, term, etc.) will not change during these periods. This total interest amount also assumes that there are no prepayments of principal.", term: '$2,878.66', amortizationPeriod: "$9,161.22"},
+    {category: "Total Cost", helpMessage: "Total of all payments made during the Term and Amoritization period respectively, assuming that the conditions of your loan (e.g. interest rate, amortization period, term, etc.) will not change during these periods. It is also assumed that there are no prepayments of principal.", term: '$4,292.24', amortizationPeriod: "$21,461.22"}
   ];
