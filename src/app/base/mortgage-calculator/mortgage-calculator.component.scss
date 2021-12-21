@@ -1,5 +1,7 @@
 @import "../../../styles.scss";
 
+$primary: map-get($theme, primary);
+
 .heading-container {
     @include flexBox();
     @include alignItems(center);
@@ -14,19 +16,19 @@ mat-divider {
     margin-top: 12px;
     border-top-width: 1px;
     border-top-style: solid;
-    border-color: #af3c43;
+    border-top-color: #af3c43 !important;
 }
 
 mat-card.mortgage-card {
     padding: 0;
     background: white;
     width: 50%;
-    border: 1px solid #2572b4;
+    border: 1px solid mat-color($primary);
     box-shadow: none !important;
     mat-card-header {
         color: #fff;
-        background-color: #2572b4;
-        border-color: #2572b4;
+        background-color: mat-color($primary);
+        border-color: mat-color($primary);
         height: 42px;
         @include alignItems(center);
         mat-card-title {
