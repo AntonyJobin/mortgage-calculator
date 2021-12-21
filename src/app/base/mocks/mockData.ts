@@ -136,19 +136,19 @@ export const mortgagePaymentFrequency = [{
     value: 1
 },{
     text: 'Weekly',
-    value: 1
-},{
-    text: 'Accelerated Bi-weekly',
     value: 2
 },{
-    text: 'Bi-Weekly(every 2 weeks)',
+    text: 'Accelerated Bi-weekly',
     value: 3
 },{
-    text: 'Semi-monthly (24x per year',
+    text: 'Bi-Weekly(every 2 weeks)',
     value: 4
 },{
-    text: 'monthly(12x per year)',
+    text: 'Semi-monthly (24x per year',
     value: 5
+},{
+    text: 'monthly(12x per year)',
+    value: 6
 }];
 
 export const mortgageTerms = [{

@@ -53,7 +53,7 @@ export class MortgageCalculatorComponent implements OnInit {
   /**
    * Data source for the table
    */
-  public dataSource : any = calculationSummary;
+  public dataSource : any;
 
   constructor() { 
     this.mortperiods = mortgageTimePeriod;
@@ -70,21 +70,28 @@ export class MortgageCalculatorComponent implements OnInit {
   private _initializeForm() : void {
     this.calculatorForm = new FormGroup({
       'paymentPlan': new FormGroup({
-        'mAmount': new FormControl(),
-        'mInterestRate': new FormControl(),
-        'mortperiodSel': new FormControl(),
+        'mAmount': new FormControl(100000),
+        'mInterestRate': new FormControl(5.00),
+        'mortperiodSel': new FormControl(25),
         'mortperiodMonths': new FormControl(),
-        'mFrequency': new FormControl(),
-        'mTerm': new FormControl()
+        'mFrequency': new FormControl(6),
+        'mTerm': new FormControl(5)
       }),
       'prePaymentPlan': new FormGroup({
-        'preAmount': new FormControl(),
-        'preFrequency': new FormControl(),
-        'startPayment': new FormControl()
+        'preAmount': new FormControl(0.00),
+        'preFrequency': new FormControl(1),
+        'startPayment': new FormControl(1)
       })
     });
-    
-    console.log('insdei i am:::', this.calculatorForm.get('paymentPlan.mAmount')?.value);
+    this.calculateLoanSummary();
+  }
+
+  /**
+   * Public function to calculate the loan summary
+   * @return {void}
+   */
+  public calculateLoanSummary() : void {
+    this.dataSource = calculationSummary;
   }
 
 }
