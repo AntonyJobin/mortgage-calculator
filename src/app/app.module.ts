@@ -22,12 +22,14 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MortgageCalculatorComponent } from './base/mortgage-calculator/mortgage-calculator.component';
+import { PaymentScheduleComponent } from './base/payment-schedule/payment-schedule.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BaseComponent,
-    MortgageCalculatorComponent
+    MortgageCalculatorComponent,
+    PaymentScheduleComponent
   ],
   imports: [
     BrowserModule,

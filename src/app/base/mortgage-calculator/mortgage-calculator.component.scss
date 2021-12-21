@@ -22,7 +22,15 @@ mat-divider {
 mat-card.mortgage-card {
     padding: 0;
     background: white;
+    
+    // For large viewport
     width: 50%;
+    
+    // Medium and small viewport
+    @media only screen and (max-width: $mediumViewPort) {
+        width: 100%;
+    }
+
     border: 1px solid mat-color($primary);
     box-shadow: none !important;
     mat-card-header {
@@ -37,20 +45,43 @@ mat-card.mortgage-card {
     }
 }
 
+mat-card.mortgage-card:not(:first-child) {
+    // For small viewport
+    @media only screen and (max-width: $mediumViewPort) {
+        margin-top: 16px;
+    }
+    
+}
+
 mat-form-field {
     width: 50%;
+    // Wrap limit
+    @media only screen and (max-width: 640px) {
+        width: 90%;
+    }
 }
 
 .payment-container {
     @include flexBox();
     padding-top: 16px;
-    
+    form {
+        width: 100%;
+    }
 }
 
 .form-container {
     @include flexBox();
     width: 100%;
-    column-gap: 16px;
+    // For medium viewport
+    @media only screen and (min-width: 641px) {
+        column-gap: 16px;
+    }
+    // For small viewport
+    @media only screen and (max-width: $mediumViewPort) {
+        
+        @include flexWrap(wrap);
+    }
+    
 }
 
 .mortgage-card-content {
@@ -70,23 +101,42 @@ mat-form-field {
     @extend .row-container;
     .mortperiod-years {
         width: 50%;
+        // Wrap limit
+        @media only screen and (max-width: 640px) {
+            width: 90%;
+        }
     }
     .mortperiod-months {
         width: 40%;
+        // Wrap limit
+        @media only screen and (max-width: 640px) {
+            width: 90%;
+        }
     }
 }
 
-.calculate-button {
+.calculate-button, .summary-report-button {
     margin-top: 24px;
-    background-color: #335075;
-    border-color: #335075;
+    background-color: #335075 !important;
+    border-color: #335075 !important;
+    color: white !important;
+}
+
+.btn-primary:active {
+    background-color: #335075 !important;
+    border-color: #335075 !important;
+    color: white !important;
 }
 
 .mc-tooltip {
     font-size: 16px;
 }
 
-.mortgage-summary {
+.calculation-summary {
+    padding-top: 32px;
+}
+
+.calculation-summary, .payment-container {
     table {
         width: 100%;
         box-shadow: none !important;
@@ -104,7 +154,7 @@ mat-form-field {
     caption {
         caption-side: top;
         text-align: center;
-        font-size: 1.1em;
+        font-size: 18px;
         color: #333;
         font-weight: 700;
     }
@@ -115,11 +165,26 @@ mat-form-field {
 
     .mat-cell {
         border-right: 1px solid #ddd;
+        width: 30%;
     }
 
     .mat-cell:not(:first-child) {
         padding-left: 24px;
     }
 
+}
 
+.mortgage-summary-container {
+    padding-top: 38px;
+    h2 {
+        padding-bottom: 12px;
+    }
+    p {
+        font-size: 16px;
+        line-height: 23px;
+    }
+    li {
+        font-size: 16px;
+        line-height: 23px;
+    }
 }

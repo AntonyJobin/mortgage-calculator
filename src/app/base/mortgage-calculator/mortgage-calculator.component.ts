@@ -7,7 +7,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 /**
  * Custom imports
  */
-import { mortgageTimePeriod, mortgageTimePeriodMonths, mortgagePaymentFrequency, mortgageTerms, prepaymentFrequencies, calculationSummary } from '../mocks/mockData';
+import { mortgageTimePeriod, mortgageTimePeriodMonths, mortgagePaymentFrequency, mortgageTerms, prepaymentFrequencies, calculationSummary } from './mocks/mockData';
 @Component({
   selector: 'app-mortgage-calculator',
   templateUrl: './mortgage-calculator.component.html',
@@ -51,9 +51,24 @@ export class MortgageCalculatorComponent implements OnInit {
   public displayedColumns: string[] = ['category', 'term', 'amortizationPeriod'];
 
   /**
+   * Table column indicators
+   */
+  public displayedMRColumns: string[] = ['category', 'value'];
+
+  /**
    * Data source for the table
    */
   public dataSource : any;
+
+  /**
+   * Data source for the table
+   */
+  public dataSourceMR : any;
+
+  /**
+   * Toggle for schedule report view
+   */
+  public isScheduleReport : boolean = false;
 
   constructor() { 
     this.mortperiods = mortgageTimePeriod;
@@ -92,6 +107,79 @@ export class MortgageCalculatorComponent implements OnInit {
    */
   public calculateLoanSummary() : void {
     this.dataSource = calculationSummary;
+  }
+
+  /**
+   * Public function to calculate Mortgage
+   */
+  public calculateMortgage() : void {
+    this.dataSource = [{
+        "category": "Number of Payments",
+        "helpMessage": "The number of payments made during the Term and Amoritization period respectively.",
+        "term": (this.calculatorForm.controls.paymentPlan as FormGroup).controls.mTerm.value * 12,
+        "amortizationPeriod": (this.calculatorForm.controls.paymentPlan as FormGroup).controls.mortperiodSel.value * 12 + (this.calculatorForm.controls.paymentPlan as FormGroup).controls.mortperiodMonths.value
+      },{
+        "category": "Mortgage Payment",
+        "helpMessage": "The amount you will pay per period during the Term and Amoritization respectively, which include a portion for the principal payment and a portion for the interest payment.",
+        "term": (this.calculatorForm.controls.paymentPlan as FormGroup).controls.mTerm.value * 12,
+        "amortizationPeriod": (this.calculatorForm.controls.paymentPlan as FormGroup).controls.mortperiodSel.value * 12
+      },{
+        "category": "Prepayment",
+        "helpMessage": "The amount of prepayment made during the Term and Amoritization period respectively.",
+        "term": (this.calculatorForm.controls.prePaymentPlan as FormGroup).controls.preAmount.value ,
+        "amortizationPeriod": (this.calculatorForm.controls.prePaymentPlan as FormGroup).controls.preAmount.value 
+      },{
+        "category": "Principal Payments",
+        "helpMessage": "The total amount of principal payment made during the Term and Amoritization period respectively.",
+        "term": (this.calculatorForm.controls.paymentPlan as FormGroup).controls.mTerm.value * 12,
+        "amortizationPeriod": (this.calculatorForm.controls.paymentPlan as FormGroup).controls.mortperiodSel.value * 12
+      },{
+        "category": "Interest Payments",
+        "helpMessage": "Total of all interest paid during the Term and Amoritization period respectively, assuming that the conditions of your loan (e.g. interest rate, amortization period, term, etc.) will not change during these periods. This total interest amount also assumes that there are no prepayments of principal.",
+        "term": (this.calculatorForm.controls.paymentPlan as FormGroup).controls.mTerm.value * 12,
+        "amortizationPeriod": (this.calculatorForm.controls.paymentPlan as FormGroup).controls.mortperiodSel.value * 12
+      },{
+        "category": "Total Cost",
+        "helpMessage": "Total of all payments made during the Term and Amoritization period respectively, assuming that the conditions of your loan (e.g. interest rate, amortization period, term, etc.) will not change during these periods. It is also assumed that there are no prepayments of principal.",
+        "term": (this.calculatorForm.controls.paymentPlan as FormGroup).controls.mTerm.value * 12,
+        "amortizationPeriod": (this.calculatorForm.controls.paymentPlan as FormGroup).controls.mortperiodSel.value * 12
+      }];
+    
+  }
+
+  /**
+   * Public function to calculate Mortgage
+   */
+  public createMortgageReport() : void {
+    this.dataSourceMR = [{
+        "category": "Mortgage Amount:",
+        "value": (this.calculatorForm.controls.paymentPlan as FormGroup).controls.mAmount.value 
+      },{
+        "category": "Interest Rate:",
+        "value": (this.calculatorForm.controls.paymentPlan as FormGroup).controls.mInterestRate.value 
+      },{
+        "category": "Amortization Period:",
+        "value": (this.calculatorForm.controls.paymentPlan as FormGroup).controls.mortperiodSel.value 
+      },{
+        "category": "Payment Frequency:",
+        "value": (this.calculatorForm.controls.paymentPlan as FormGroup).controls.mFrequency.value 
+      },{
+        "category": "Term:",
+        "value": (this.calculatorForm.controls.paymentPlan as FormGroup).controls.mTerm.value 
+      },{
+        "category": "Prepayment Amount:",
+        "value": (this.calculatorForm.controls.prePaymentPlan as FormGroup).controls.preFrequency.value 
+      }];
+    
+  }
+
+  /**
+   * Event listener for schedule report
+   * @return {void}
+   */
+  public triggerScheduleReport() : void {
+    this.createMortgageReport();
+    this.isScheduleReport = true;
   }
 
 }
