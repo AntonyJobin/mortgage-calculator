@@ -22,4 +22,15 @@ describe('MortgageCalculatorComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should render the user input form', () => {
+    const fixture = TestBed.createComponent(MortgageCalculatorComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+    // For the payment form
+    expect(compiled.querySelector('#payment-plan-card mat-card-title').textContent).toContain('Payment Plan');
+    // For the pre payment form
+    expect(compiled.querySelector('#prepayment-plan-card mat-card-title').textContent).toContain('Prepayment Plan');
+  });
+
 });

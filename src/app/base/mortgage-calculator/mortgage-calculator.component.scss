@@ -61,7 +61,7 @@ mat-form-field {
     }
 }
 
-.payment-container {
+.mortgage-details-container {
     @include flexBox();
     padding-top: 16px;
     form {
@@ -136,7 +136,7 @@ mat-form-field {
     padding-top: 32px;
 }
 
-.calculation-summary, .payment-container {
+.calculation-summary, .mortgage-details-container {
     table {
         width: 100%;
         box-shadow: none !important;
@@ -187,4 +187,14 @@ mat-form-field {
         font-size: 16px;
         line-height: 23px;
     }
+}
+
+.mat-icon-button {
+    width: 72px !important;
+}
+
+.mc-back-button {
+    align-items: center;
+    display: flex;
+    margin-bottom: 32px;
 }
