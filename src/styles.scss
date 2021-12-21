@@ -4,6 +4,8 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "./theme.scss";
 
+$mediumViewPort: 920px;
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
