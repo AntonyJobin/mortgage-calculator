@@ -182,4 +182,12 @@ export class MortgageCalculatorComponent implements OnInit {
     this.isScheduleReport = true;
   }
 
+  /**
+   * Handler for the back button action
+   * @return {void}
+   */
+  public triggerBack() : void {
+    this.isScheduleReport = false;
+  }
+
 }

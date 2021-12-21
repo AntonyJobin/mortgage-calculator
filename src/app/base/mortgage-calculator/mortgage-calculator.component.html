@@ -1,4 +1,9 @@
+<button *ngIf="isScheduleReport" class="mc-back-button" (click)="triggerBack()" mat-icon-button aria-label="Back to User input form for the Mortgage Calculation">
+    <mat-icon color="primary" >arrow_circle_left</mat-icon> Back
+</button>
+
 <div class="heading-container">
+    
     <img
         width="40"
         alt="Angular Logo"
@@ -6,16 +11,20 @@
     />
     <span>Mortgage Calculator</span>
 </div>
+
+
 <mat-divider></mat-divider>
-<div class="payment-container">
+
+<!-- Mortgage Details Form container -->
+<div class="mortgage-details-container">
     <!-- Mortgage form -->
     <form [formGroup]="calculatorForm"  (ngSubmit)="calculateMortgage()" *ngIf="!isScheduleReport">
         <div class="form-container">
 
             <!-- Payment Plan section   -->
-            <mat-card class="mortgage-card">
+            <mat-card class="mortgage-card" id="payment-plan-card">
                 <mat-card-header>
-                <mat-card-title>Payment Plan</mat-card-title>
+                    <mat-card-title>Payment Plan</mat-card-title>
                 </mat-card-header>
                 
                 <mat-card-content>
@@ -89,7 +98,7 @@
             </mat-card>
 
             <!-- Prepayment Plan Section -->
-            <mat-card class="mortgage-card">
+            <mat-card class="mortgage-card" id="prepayment-plan-card">
                 <mat-card-header>
                     <mat-card-title>Prepayment Plan</mat-card-title>
                 </mat-card-header>
@@ -147,6 +156,8 @@
     </table>
 </div>
 
+
+
 <!-- Calculation Summary Section -->
 <div class="calculation-summary">
 
@@ -175,32 +186,32 @@
     </table>
 </div>
 
+
+
 <!-- Mortgage Summary Section -->
 <div class="mortgage-summary-container">
 
-<h2>Mortgage Summary</h2>
+    <h2>Mortgage Summary</h2>
 
-<p>Over the 25-year amortization period, you will:</p>
-<ul>
-    <li>have made <strong>300</strong> monthly (12x per year) payments of <strong>$50.81.</strong></li>
-    <li>have paid <strong>$12,000.00</strong> in principal, <strong>$3,244.24</strong> in interest, for a total of <strong>$15,244.24.</strong></li>
-</ul>
+    <p>Over the 25-year amortization period, you will:</p>
+    <ul>
+        <li>have made <strong>300</strong> monthly (12x per year) payments of <strong>$50.81.</strong></li>
+        <li>have paid <strong>$12,000.00</strong> in principal, <strong>$3,244.24</strong> in interest, for a total of <strong>$15,244.24.</strong></li>
+    </ul>
 
-<p>Over the 5-year term, you will:</p>
-<ul>
-    <li>have made <strong>60</strong> monthly (12x per year) payments of <strong>$50.81.</strong></li>
-    <li>have paid <strong>$1,947.58</strong> in principal, <strong>$1,101.27</strong> in interest, for a total of <strong>$3,048.85.</strong></li>
-</ul>
+    <p>Over the 5-year term, you will:</p>
+    <ul>
+        <li>have made <strong>60</strong> monthly (12x per year) payments of <strong>$50.81.</strong></li>
+        <li>have paid <strong>$1,947.58</strong> in principal, <strong>$1,101.27</strong> in interest, for a total of <strong>$3,048.85.</strong></li>
+    </ul>
 
-<p>At the end of your 5-year term, you will:</p>
-<ul>
-    <li>have a balance of <strong>$10,052.42.</strong></li>
-</ul>
+    <p>At the end of your 5-year term, you will:</p>
+    <ul>
+        <li>have a balance of <strong>$10,052.42.</strong></li>
+    </ul>
 
 </div>
 
 <button *ngIf="!isScheduleReport" mat-raised-button class="btn btn-primary summary-report-button" (click)="triggerScheduleReport()">Summary Report</button>
 
-<app-payment-schedule *ngIf="isScheduleReport">
-
-</app-payment-schedule>
+<app-payment-schedule *ngIf="isScheduleReport"></app-payment-schedule>

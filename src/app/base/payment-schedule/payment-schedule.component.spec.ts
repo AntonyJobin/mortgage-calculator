@@ -19,7 +19,15 @@ describe('PaymentScheduleComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('To check the component created successfully', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should render the caption for the Payment schedule tabular content', () => {
+    const fixture = TestBed.createComponent(PaymentScheduleComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+    expect(compiled.querySelector('caption').textContent).toContain('Payment Schedule');
+  });
+
 });
